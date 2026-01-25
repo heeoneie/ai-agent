@@ -1,15 +1,12 @@
 [project]
-name = "example-agent"
+name = "news-reader-agent"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "openai>=2.15.0",
-    "openapi>=2.0.0",
-]
-
-[dependency-groups]
-dev = [
-    "ipykernel>=7.1.0",
+    "crewai[tools]>=0.152.0",
+    "python-dotenv>=1.1.1",
+    "beautifulsoup4>=4.12.3",
+    "playwright>=1.50.0",
 ]
