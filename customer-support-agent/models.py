@@ -1,0 +1,38 @@
+from pydantic import BaseModel
+from typing import Optional
+
+
+class UserAccountContext(BaseModel):
+
+    customer_id: int
+    name: str
+    tier: str = "basic"
+    email: Optional[str] = None
+    troubleshooting_steps: list[str] = []
+
+    def is_premium_customer(self) -> bool:
+        return self.tier != "basic"
+
+    def add_troubleshooting_step(self, step: str):
+        self.troubleshooting_steps.append(step)
+
+class InputGuardRailOutput(BaseModel):
+
+    is_off_topic: bool
+    reason: str
+
+
+class TechnicalOutputGuardRailOutput(BaseModel):
+
+    contains_off_topic: bool
+    contains_billing_data: bool
+    contains_account_data: bool
+    reason: str
+
+
+class HandoffData(BaseModel):
+
+    to_agent_name: str
+    issue_type: str
+    issue_description: str
+    reason: str
